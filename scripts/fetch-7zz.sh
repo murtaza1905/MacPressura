@@ -45,6 +45,10 @@ chmod 755 "$DEST_DIR/7zz"
 [ -f "$TMP/x/License.txt" ] && cp "$TMP/x/License.txt" "$DEST_DIR/License.txt"
 [ -f "$TMP/x/History.txt" ] && cp "$TMP/x/History.txt" "$DEST_DIR/History.txt"
 xattr -d com.apple.quarantine "$DEST_DIR/7zz" 2>/dev/null || true
+
+# The official binary ships unsigned; Xcode refuses to sign an app that embeds unsigned code.
+# An ad-hoc signature is enough for a locally built app.
+codesign --force --sign - "$DEST_DIR/7zz"
 echo "$SEVENZIP_VERSION" > "$STAMP"
 
 echo "7zz ${SEVENZIP_VERSION} ready at Vendor/7zz/7zz"

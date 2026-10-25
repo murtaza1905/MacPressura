@@ -73,6 +73,10 @@ log "Preparing 7-Zip engine (7zz)"
 chmod +x "$ROOT/scripts/fetch-7zz.sh"
 "$ROOT/scripts/fetch-7zz.sh"
 [ -x "$ROOT/Vendor/7zz/7zz" ] || fail "Vendor/7zz/7zz is missing."
+# Make sure the engine carries a signature even when it came from an older cache.
+if ! codesign --verify "$ROOT/Vendor/7zz/7zz" >/dev/null 2>&1; then
+  codesign --force --sign - "$ROOT/Vendor/7zz/7zz"
+fi
 
 # ---------------------------------------------------------------- Generate
 log "Generating Xcode project"
