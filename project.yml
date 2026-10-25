@@ -1,0 +1,183 @@
+name: MacPressura
+
+options:
+  bundleIdPrefix: com.muratonurcu
+  deploymentTarget:
+    macOS: "14.0"
+  xcodeVersion: "15.0"
+  developmentLanguage: en
+  createIntermediateGroups: true
+  generateEmptyDirectories: false
+
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    MACOSX_DEPLOYMENT_TARGET: "14.0"
+    ARCHS: "arm64 x86_64"
+    ONLY_ACTIVE_ARCH: "NO"
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: "-"
+    DEVELOPMENT_TEAM: ""
+    ENABLE_HARDENED_RUNTIME: "NO"
+    ENABLE_APP_SANDBOX: "NO"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    COMBINE_HIDPI_IMAGES: "YES"
+    ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+    GENERATE_INFOPLIST_FILE: "NO"
+    SWIFT_EMIT_LOC_STRINGS: "YES"
+  configs:
+    Debug:
+      SWIFT_OPTIMIZATION_LEVEL: "-Onone"
+    Release:
+      SWIFT_OPTIMIZATION_LEVEL: "-O"
+      SWIFT_COMPILATION_MODE: wholemodule
+
+targets:
+  MacPressura:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources
+        excludes:
+          - "Resources/**"
+          - "Info.plist"
+      - path: Sources/Resources
+        buildPhase: resources
+      - path: Vendor/7zz/7zz
+        optional: true
+        buildPhase:
+          copyFiles:
+            destination: executables
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.muratonurcu.MacPressura
+        PRODUCT_NAME: MacPressura
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+    info:
+      path: Sources/Info.plist
+      properties:
+        CFBundleName: MacPressura
+        CFBundleDisplayName: MacPressura
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleDevelopmentRegion: en
+        CFBundleLocalizations:
+          - en
+          - tr
+        CFBundleIconName: AppIcon
+        LSMinimumSystemVersion: "14.0"
+        LSApplicationCategoryType: public.app-category.utilities
+        NSHumanReadableCopyright: "Copyright © 2026 Murat Onurcu. MIT License. Includes 7-Zip (7zz) by Igor Pavlov, LGPL."
+        NSHighResolutionCapable: true
+        NSSupportsAutomaticTermination: false
+        NSSupportsSuddenTermination: false
+        CFBundleDocumentTypes:
+          - CFBundleTypeName: "7-Zip Archive"
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Default
+            LSItemContentTypes:
+              - org.7-zip.7-zip-archive
+          - CFBundleTypeName: "RAR Archive"
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Default
+            LSItemContentTypes:
+              - com.rarlab.rar-archive
+          - CFBundleTypeName: "Archive"
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Alternate
+            LSItemContentTypes:
+              - public.zip-archive
+              - public.tar-archive
+              - org.gnu.gnu-zip-archive
+              - org.gnu.gnu-zip-tar-archive
+              - public.bzip2-archive
+              - public.tar-bzip2-archive
+              - org.tukaani.xz-archive
+              - org.tukaani.tar-xz-archive
+              - public.cpio-archive
+              - public.iso-image
+              - com.apple.disk-image
+              - com.apple.installer-package-archive
+              - com.apple.xar-archive
+          - CFBundleTypeName: "Other Archive"
+            CFBundleTypeRole: Viewer
+            LSHandlerRank: Default
+            LSItemContentTypes:
+              - com.muratonurcu.macpressura.zstd-archive
+              - com.muratonurcu.macpressura.tar-zstd-archive
+              - com.muratonurcu.macpressura.cab-archive
+              - com.muratonurcu.macpressura.arj-archive
+              - com.muratonurcu.macpressura.lzh-archive
+              - com.muratonurcu.macpressura.wim-archive
+              - com.muratonurcu.macpressura.lz4-archive
+              - com.muratonurcu.macpressura.lzma-archive
+              - com.muratonurcu.macpressura.tar-bzip2-short
+              - com.muratonurcu.macpressura.tar-xz-short
+              - com.muratonurcu.macpressura.split-volume
+        UTImportedTypeDeclarations:
+          - UTTypeIdentifier: com.muratonurcu.macpressura.zstd-archive
+            UTTypeDescription: "Zstandard Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [zst]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.tar-zstd-archive
+            UTTypeDescription: "Zstandard Tar Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [tzst]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.cab-archive
+            UTTypeDescription: "Cabinet Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [cab]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.arj-archive
+            UTTypeDescription: "ARJ Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [arj]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.lzh-archive
+            UTTypeDescription: "LZH Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [lzh, lha]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.wim-archive
+            UTTypeDescription: "Windows Imaging Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [wim, swm, esd]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.lz4-archive
+            UTTypeDescription: "LZ4 Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [lz4]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.lzma-archive
+            UTTypeDescription: "LZMA Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [lzma, lz]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.tar-bzip2-short
+            UTTypeDescription: "Bzip2 Tar Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [tbz, tbz2]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.tar-xz-short
+            UTTypeDescription: "XZ Tar Archive"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: [txz]
+          - UTTypeIdentifier: com.muratonurcu.macpressura.split-volume
+            UTTypeDescription: "Split Archive Volume"
+            UTTypeConformsTo: [public.data, public.archive]
+            UTTypeTagSpecification:
+              public.filename-extension: ["001"]
+
+schemes:
+  MacPressura:
+    build:
+      targets:
+        MacPressura: all
+    run:
+      config: Release
+    archive:
+      config: Release

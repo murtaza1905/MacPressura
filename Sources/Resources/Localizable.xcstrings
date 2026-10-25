@@ -1,0 +1,1132 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%lld active": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld etkin"
+          }
+        }
+      }
+    },
+    "%lld files": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld dosya"
+          }
+        }
+      }
+    },
+    "%lld folders": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld klasör"
+          }
+        }
+      }
+    },
+    "%lld items": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld öğe"
+          }
+        }
+      }
+    },
+    "%lld items · %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld öğe · %@"
+          }
+        }
+      }
+    },
+    "7-Zip failed with exit code %lld.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-Zip %lld çıkış koduyla başarısız oldu."
+          }
+        }
+      }
+    },
+    "About": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hakkında"
+          }
+        }
+      }
+    },
+    "Add": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ekle"
+          }
+        }
+      }
+    },
+    "Also hide file names (encrypt headers)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosya adlarını da gizle (başlıkları şifrele)"
+          }
+        }
+      }
+    },
+    "Archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv"
+          }
+        }
+      }
+    },
+    "Archive: %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv: %@"
+          }
+        }
+      }
+    },
+    "Ask for a folder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klasör sor"
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vazgeç"
+          }
+        }
+      }
+    },
+    "Cancelled": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İptal edildi"
+          }
+        }
+      }
+    },
+    "Cancelled.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İptal edildi."
+          }
+        }
+      }
+    },
+    "Choose": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seç"
+          }
+        }
+      }
+    },
+    "Choose Extraction Folder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çıkarma Klasörünü Seç"
+          }
+        }
+      }
+    },
+    "Choose Files to Compress": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sıkıştırılacak Dosyaları Seç"
+          }
+        }
+      }
+    },
+    "Choose Folder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klasör Seç"
+          }
+        }
+      }
+    },
+    "Choose…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seç…"
+          }
+        }
+      }
+    },
+    "Clear Finished": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitenleri Temizle"
+          }
+        }
+      }
+    },
+    "Close": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kapat"
+          }
+        }
+      }
+    },
+    "Close Archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşivi Kapat"
+          }
+        }
+      }
+    },
+    "Close this archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu arşivi kapat"
+          }
+        }
+      }
+    },
+    "Completed with warnings.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyarılarla tamamlandı."
+          }
+        }
+      }
+    },
+    "Compression": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sıkıştırma"
+          }
+        }
+      }
+    },
+    "Confirm password": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parolayı doğrula"
+          }
+        }
+      }
+    },
+    "Content": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçerik"
+          }
+        }
+      }
+    },
+    "Content: %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İçerik: %@"
+          }
+        }
+      }
+    },
+    "Could not open archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv açılamadı"
+          }
+        }
+      }
+    },
+    "Create": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oluştur"
+          }
+        }
+      }
+    },
+    "Create a new archive (⌘N)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni arşiv oluştur (⌘N)"
+          }
+        }
+      }
+    },
+    "Default compression": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varsayılan sıkıştırma"
+          }
+        }
+      }
+    },
+    "Default format": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varsayılan biçim"
+          }
+        }
+      }
+    },
+    "Default target": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varsayılan hedef"
+          }
+        }
+      }
+    },
+    "Done in %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ içinde tamamlandı"
+          }
+        }
+      }
+    },
+    "Done with warnings: %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uyarılarla tamamlandı: %@"
+          }
+        }
+      }
+    },
+    "Drop an archive to open it, or drop files to compress them": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Açmak için bir arşiv, sıkıştırmak için dosyaları buraya bırak"
+          }
+        }
+      }
+    },
+    "Encrypt file names by default (7z, when a password is set)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosya adlarını varsayılan olarak şifrele (7z, parola ayarlandığında)"
+          }
+        }
+      }
+    },
+    "Encrypted": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şifreli"
+          }
+        }
+      }
+    },
+    "Engine": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motor"
+          }
+        }
+      }
+    },
+    "Engine missing": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Motor bulunamadı"
+          }
+        }
+      }
+    },
+    "Enter a password.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir parola gir."
+          }
+        }
+      }
+    },
+    "Extract": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çıkar"
+          }
+        }
+      }
+    },
+    "Extract (Default)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çıkar (Varsayılan)"
+          }
+        }
+      }
+    },
+    "Extract Here": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buraya Çıkar"
+          }
+        }
+      }
+    },
+    "Extract to Folder Named After Archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv Adıyla Klasöre Çıkar"
+          }
+        }
+      }
+    },
+    "Extract to…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Şuraya Çıkar…"
+          }
+        }
+      }
+    },
+    "Extract with the default setting (⌘E); use the menu for other targets": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Varsayılan ayarla çıkar (⌘E); diğer hedefler için menüyü kullan"
+          }
+        }
+      }
+    },
+    "Extraction": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çıkarma"
+          }
+        }
+      }
+    },
+    "Failed: %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Başarısız: %@"
+          }
+        }
+      }
+    },
+    "Fast": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hızlı"
+          }
+        }
+      }
+    },
+    "Fastest": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En hızlı"
+          }
+        }
+      }
+    },
+    "File": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosya"
+          }
+        }
+      }
+    },
+    "Filter": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtrele"
+          }
+        }
+      }
+    },
+    "Folder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klasör"
+          }
+        }
+      }
+    },
+    "Format": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biçim"
+          }
+        }
+      }
+    },
+    "Hide Tasks": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görevleri Gizle"
+          }
+        }
+      }
+    },
+    "Into a folder named after the archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv adını taşıyan bir klasöre"
+          }
+        }
+      }
+    },
+    "Keep both (rename new file)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İkisini de koru (yeni dosyayı yeniden adlandır)"
+          }
+        }
+      }
+    },
+    "Kind": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tür"
+          }
+        }
+      }
+    },
+    "MacPressura": {
+      "shouldTranslate": false
+    },
+    "Maximum": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "En yüksek"
+          }
+        }
+      }
+    },
+    "Modified": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Değiştirilme"
+          }
+        }
+      }
+    },
+    "Name": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ad"
+          }
+        }
+      }
+    },
+    "New Archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni Arşiv"
+          }
+        }
+      }
+    },
+    "New Archive…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni Arşiv…"
+          }
+        }
+      }
+    },
+    "New archives": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yeni arşivler"
+          }
+        }
+      }
+    },
+    "Next to the archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşivin yanına"
+          }
+        }
+      }
+    },
+    "No entries match the filter.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Filtreyle eşleşen öğe yok."
+          }
+        }
+      }
+    },
+    "Normal": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Normal"
+          }
+        }
+      }
+    },
+    "OK": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tamam"
+          }
+        }
+      }
+    },
+    "Open": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aç"
+          }
+        }
+      }
+    },
+    "Open Archive": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv Aç"
+          }
+        }
+      }
+    },
+    "Open Archive…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv Aç…"
+          }
+        }
+      }
+    },
+    "Open an archive (⌘O)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bir arşiv aç (⌘O)"
+          }
+        }
+      }
+    },
+    "Open source under the MIT license. Bundles 7-Zip (7zz) by Igor Pavlov under the LGPL. Everything runs locally; nothing leaves your Mac.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT lisansıyla açık kaynak. Igor Pavlov'un 7-Zip (7zz) motorunu LGPL lisansıyla içerir. Her şey yerel çalışır; hiçbir veri Mac'inden dışarı çıkmaz."
+          }
+        }
+      }
+    },
+    "Overwrite existing files": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var olan dosyaların üzerine yaz"
+          }
+        }
+      }
+    },
+    "Packed": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sıkıştırılmış"
+          }
+        }
+      }
+    },
+    "Password": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parola"
+          }
+        }
+      }
+    },
+    "Password protection is available for 7z and ZIP archives.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parola koruması 7z ve ZIP arşivlerinde kullanılabilir."
+          }
+        }
+      }
+    },
+    "Password required": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parola gerekli"
+          }
+        }
+      }
+    },
+    "Passwords do not match.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parolalar eşleşmiyor."
+          }
+        }
+      }
+    },
+    "Protect with a password (AES-256)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parolayla koru (AES-256)"
+          }
+        }
+      }
+    },
+    "Ratio: %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Oran: %@"
+          }
+        }
+      }
+    },
+    "Reading %@…": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ okunuyor…"
+          }
+        }
+      }
+    },
+    "Remove from list": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listeden kaldır"
+          }
+        }
+      }
+    },
+    "Save to": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaydedilecek yer"
+          }
+        }
+      }
+    },
+    "Show Tasks": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görevleri Göster"
+          }
+        }
+      }
+    },
+    "Show extracted content in Finder when done": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitince çıkarılan içeriği Finder'da göster"
+          }
+        }
+      }
+    },
+    "Show in Finder": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Finder'da Göster"
+          }
+        }
+      }
+    },
+    "Show or hide the task list (⌘J)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görev listesini göster veya gizle (⌘J)"
+          }
+        }
+      }
+    },
+    "Show the new archive in Finder when done": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bitince yeni arşivi Finder'da göster"
+          }
+        }
+      }
+    },
+    "Size": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Boyut"
+          }
+        }
+      }
+    },
+    "Skip existing files": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Var olan dosyaları atla"
+          }
+        }
+      }
+    },
+    "Skip macOS metadata (.DS_Store, __MACOSX, ._* files)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS meta verilerini atla (.DS_Store, __MACOSX, ._* dosyaları)"
+          }
+        }
+      }
+    },
+    "Skip macOS metadata files by default": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS meta veri dosyalarını varsayılan olarak atla"
+          }
+        }
+      }
+    },
+    "Smart (subfolder unless the archive has a single root item)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Akıllı (arşivde tek kök öğe yoksa alt klasöre)"
+          }
+        }
+      }
+    },
+    "Solid": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Solid"
+          }
+        }
+      }
+    },
+    "Store (no compression)": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Depola (sıkıştırma yok)"
+          }
+        }
+      }
+    },
+    "Tasks": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Görevler"
+          }
+        }
+      }
+    },
+    "The 7-Zip engine (7zz) could not be found inside the app bundle. Rebuild the app with ./build.sh.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-Zip motoru (7zz) uygulama paketinde bulunamadı. Uygulamayı ./build.sh ile yeniden derle."
+          }
+        }
+      }
+    },
+    "The 7-Zip engine (7zz) is missing from the app bundle. Run ./build.sh again to rebuild.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7-Zip motoru (7zz) uygulama paketinde eksik. Yeniden derlemek için ./build.sh komutunu tekrar çalıştır."
+          }
+        }
+      }
+    },
+    "The password was not accepted. Try again.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parola kabul edilmedi. Yeniden dene."
+          }
+        }
+      }
+    },
+    "This archive is empty.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu arşiv boş."
+          }
+        }
+      }
+    },
+    "This file is not a supported archive, or it is damaged.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bu dosya desteklenen bir arşiv değil ya da hasarlı."
+          }
+        }
+      }
+    },
+    "Ultra": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultra"
+          }
+        }
+      }
+    },
+    "Unlock": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kilidi Aç"
+          }
+        }
+      }
+    },
+    "Waiting": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bekliyor"
+          }
+        }
+      }
+    },
+    "When a file already exists": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dosya zaten varsa"
+          }
+        }
+      }
+    },
+    "Working… %@": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Çalışıyor… %@"
+          }
+        }
+      }
+    },
+    "Wrong password.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Parola yanlış."
+          }
+        }
+      }
+    },
+    "ZIP, 7z, RAR, TAR, GZ, XZ, BZ2, ZST, ISO, DMG, CAB and more are supported. Creates 7z, ZIP, TAR.GZ, TAR.XZ, TAR.BZ2 and TAR.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ZIP, 7z, RAR, TAR, GZ, XZ, BZ2, ZST, ISO, DMG, CAB ve daha fazlası desteklenir. 7z, ZIP, TAR.GZ, TAR.XZ, TAR.BZ2 ve TAR oluşturur."
+          }
+        }
+      }
+    },
+    "github.com/murtaza1905/MacPressura": {
+      "shouldTranslate": false
+    }
+  },
+  "version": "1.0"
+}

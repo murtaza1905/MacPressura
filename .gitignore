@@ -1,0 +1,19 @@
+# Build products
+build/
+DerivedData/
+*.xcodeproj/
+*.xcworkspace/
+xcuserdata/
+*.xcuserstate
+
+# Generated at build time
+Vendor/7zz/
+.tools/
+
+# macOS
+.DS_Store
+._*
+
+# Swift Package Manager
+.build/
+.swiftpm/
