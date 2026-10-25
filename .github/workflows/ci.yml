@@ -44,6 +44,19 @@ jobs:
           test -f "$app/Contents/Resources/PrivacyInfo.xcprivacy"
           codesign --verify --deep --strict --verbose=2 "$app"
 
+      - name: Package DMG (release path smoke test)
+        run: |
+          brew install create-dmg >/dev/null 2>&1 || echo "create-dmg not installed; using hdiutil fallback"
+          ./scripts/make-dmg.sh --app "build/MacPressura.app"
+          ls -la dist
+          hdiutil imageinfo dist/*.dmg | grep -E "Format:|Checksum Type" || true
+
+      - name: Upload DMG
+        uses: actions/upload-artifact@v4
+        with:
+          name: MacPressura-dmg
+          path: dist/*.dmg
+
       - name: Upload app
         uses: actions/upload-artifact@v4
         with:

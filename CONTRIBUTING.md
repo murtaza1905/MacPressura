@@ -45,14 +45,16 @@ The Xcode project is generated from `project.yml`; it is not committed. To work 
 
 1. Bump the version (`MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` in `project.yml`) and move the **Unreleased** notes in `CHANGELOG.md` under the new version heading.
 2. Commit, push to `main` and wait for CI to pass.
-3. Tag the commit and push the tag:
+3. Start the release in one of two ways:
+   - **Actions tab → Release → Run workflow**, enter the version (for example `1.2.0`). The workflow creates and pushes the tag itself.
+   - Or tag from Terminal:
 
-   ```bash
-   git tag v<version>
-   git push origin v<version>
-   ```
+     ```bash
+     git tag v<version>
+     git push origin v<version>
+     ```
 
-4. The **Release** workflow builds a universal (Apple Silicon + Intel) app, packages the `.dmg` and `.zip`, writes `SHA256SUMS.txt` and publishes the GitHub Release using the matching `CHANGELOG.md` section as release notes.
+4. The **Release** workflow builds a universal (Apple Silicon + Intel) app, packages the `.dmg` and `.zip`, writes `SHA256SUMS.txt` and publishes the GitHub Release using the matching `CHANGELOG.md` section as release notes. The version must match the project version or the run stops before building.
 
 ## License
 
