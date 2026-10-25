@@ -2,7 +2,9 @@ name: Release
 
 # Pushing a tag such as v0.1.0 builds a universal app, packages it as .dmg and
 # .zip, writes SHA256SUMS.txt and publishes a GitHub Release whose notes come
-# from the matching section of CHANGELOG.md.
+# from the matching section of CHANGELOG.md. The same release can be started
+# from the Actions tab ("Run workflow" with the version number): the workflow
+# then creates and pushes the tag before building.
 #
 # Builds are ad-hoc signed unless the repository defines these secrets, in which
 # case the app is signed with Developer ID and notarized by Apple:
@@ -15,6 +17,12 @@ name: Release
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Version to release, e.g. 1.2.0 — must match the project version. The workflow creates and pushes the tag itself."
+        required: true
+        type: string
 
 permissions:
   contents: write
@@ -31,16 +39,41 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Check that the tag matches MARKETING_VERSION
+      - name: Resolve version and check it against MARKETING_VERSION in project.yml
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
         run: |
-          tag="${GITHUB_REF_NAME#v}"
-          version="$(grep -E '^\s*MARKETING_VERSION:' project.yml | head -1 | sed -E 's/.*"([^"]+)".*/\1/')"
-          echo "tag=$tag version=$version"
-          if [ "$tag" != "$version" ]; then
-            echo "::error::Tag v$tag does not match MARKETING_VERSION ($version) in project.yml"
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            version="${INPUT_VERSION#v}"
+          else
+            version="${GITHUB_REF_NAME#v}"
+          fi
+          project_version="$(grep -E '^\s*MARKETING_VERSION:' project.yml | head -1 | sed -E 's/.*"([^"]+)".*/\1/')"
+          echo "requested=$version project=$project_version"
+          if [ "$version" != "$project_version" ]; then
+            echo "::error::Requested version $version does not match MARKETING_VERSION in project.yml ($project_version)"
             exit 1
           fi
           echo "VERSION=$version" >> "$GITHUB_ENV"
+          echo "TAG=v$version" >> "$GITHUB_ENV"
+
+      - name: Create and push the tag (manual runs only)
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if git ls-remote --exit-code --tags origin "refs/tags/$TAG" >/dev/null 2>&1; then
+            remote_sha="$(git ls-remote --tags origin "refs/tags/$TAG^{}" | cut -f1)"
+            [ -z "$remote_sha" ] && remote_sha="$(git ls-remote --tags origin "refs/tags/$TAG" | cut -f1)"
+            if [ "$remote_sha" != "$GITHUB_SHA" ]; then
+              echo "::error::Tag $TAG already exists and points at $remote_sha, not at this commit ($GITHUB_SHA)"
+              exit 1
+            fi
+            echo "Tag $TAG already points at this commit; reusing it."
+          else
+            git tag -a "$TAG" -m "$APP_NAME $VERSION"
+            git push origin "$TAG"
+          fi
 
       - name: Build universal app
         run: |
@@ -140,7 +173,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "$GITHUB_REF_NAME" \
+          gh release create "$TAG" \
             "dist/$APP_NAME-$VERSION.dmg" \
             "dist/$APP_NAME-$VERSION.zip" \
             dist/SHA256SUMS.txt \
