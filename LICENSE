@@ -19,10 +19,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
----
-
-This application bundles the 7-Zip command-line engine (7zz) by Igor Pavlov.
-7-Zip is licensed under the GNU LGPL (with the unRAR license restriction for
-the RAR decoder) and BSD licenses. See LICENSE-7zip for the full text.
-7-Zip is downloaded at build time and is not modified.
