@@ -1,7 +1,7 @@
 # MacPressura
 
-Açık kaynak, ücretsiz bir macOS arşiv uygulaması — Mac için WinRAR muadili.
-Open-source, free archive utility for macOS — a WinRAR-class tool for the Mac.
+Açık kaynak, ücretsiz bir macOS arşiv uygulaması
+Open-source, free archive utility for macOS
 
 - Opens and extracts: ZIP, 7z, RAR (RAR4 / RAR5), TAR, GZ, BZ2, XZ, ZST, LZMA, LZ4, ISO, DMG, CAB, ARJ, LZH, WIM, CPIO, RPM, DEB, XAR/PKG and more
 - Creates: 7z, ZIP, TAR.GZ, TAR.XZ, TAR.BZ2, TAR — with compression levels, AES-256 passwords and encrypted file names (7z)
