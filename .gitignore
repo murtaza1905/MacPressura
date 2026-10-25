@@ -1,5 +1,6 @@
 # Build products
 build/
+dist/
 DerivedData/
 *.xcodeproj/
 *.xcworkspace/
@@ -9,6 +10,7 @@ xcuserdata/
 # Generated at build time
 Vendor/7zz/
 .tools/
+Sources/Info.plist
 
 # macOS
 .DS_Store

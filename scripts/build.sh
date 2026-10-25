@@ -1,29 +1,26 @@
 #!/bin/bash
-# MacPressura one-shot build:
-#   fetches 7zz -> generates the Xcode project -> builds a universal Release app
-#   -> installs it to /Applications -> launches it.
+# Builds MacPressura as a universal (arm64 + x86_64) Release app:
+#   downloads XcodeGen and the pinned 7-Zip engine when missing -> generates the
+#   Xcode project -> builds -> ad-hoc signs the bundle.
+#
+# Output: build/MacPressura.app
+# To install and launch the result, run ./scripts/install.sh instead.
 #
 # Usage:
-#   ./build.sh            build, install to /Applications and launch
-#   ./build.sh --no-run   build and install only
-#   ./build.sh --clean    remove build products and caches, then build
+#   ./scripts/build.sh            build
+#   ./scripts/build.sh --clean    remove build products, the generated project and the cached engine first
 set -euo pipefail
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 ROOT="$(pwd)"
 APP_NAME="MacPressura"
 SCHEME="MacPressura"
-INSTALL_DIR="/Applications"
 TOOLS_DIR="$ROOT/.tools"
 DERIVED="$ROOT/build/DerivedData"
-RUN_AFTER_BUILD=1
 
 for arg in "$@"; do
   case "$arg" in
-    --no-run) RUN_AFTER_BUILD=0 ;;
-    --clean)
-      rm -rf "$ROOT/build" "$ROOT/$APP_NAME.xcodeproj" "$ROOT/Vendor/7zz"
-      ;;
+    --clean) rm -rf "$ROOT/build" "$ROOT/$APP_NAME.xcodeproj" "$ROOT/Vendor/7zz" ;;
     *) echo "Unknown option: $arg" >&2; exit 2 ;;
   esac
 done
@@ -39,12 +36,11 @@ Xcode is required (the Command Line Tools alone cannot build a SwiftUI app).
   1. Install Xcode from the App Store.
   2. Open Xcode once and accept the license.
   3. Run:  sudo xcode-select -s /Applications/Xcode.app
-  4. Run ./build.sh again.
+  4. Run ./scripts/build.sh again.
 EOF
   exit 1
 fi
-XCODE_VERSION="$(xcodebuild -version 2>/dev/null | head -1 || true)"
-echo "$XCODE_VERSION"
+xcodebuild -version 2>/dev/null | head -1 || true
 
 # ---------------------------------------------------------------- XcodeGen
 log "Checking XcodeGen"
@@ -103,29 +99,10 @@ BUILT_APP="$DERIVED/Build/Products/Release/$APP_NAME.app"
 
 # Make sure the bundled engine is executable and the whole bundle is ad-hoc signed.
 chmod +x "$BUILT_APP/Contents/MacOS/7zz" 2>/dev/null || true
-codesign --force --deep --sign - "$BUILT_APP" >/dev/null 2>&1 || true
+codesign --force --deep --options runtime --sign - "$BUILT_APP"
 
-# ---------------------------------------------------------------- Install
-log "Installing to $INSTALL_DIR/$APP_NAME.app"
-if pgrep -x "$APP_NAME" >/dev/null 2>&1; then
-  osascript -e "tell application \"$APP_NAME\" to quit" >/dev/null 2>&1 || true
-  sleep 1
-  pkill -x "$APP_NAME" >/dev/null 2>&1 || true
-fi
-if [ -w "$INSTALL_DIR" ]; then
-  rm -rf "$INSTALL_DIR/$APP_NAME.app"
-  ditto "$BUILT_APP" "$INSTALL_DIR/$APP_NAME.app"
-else
-  echo "Administrator password is needed to write to $INSTALL_DIR"
-  sudo rm -rf "$INSTALL_DIR/$APP_NAME.app"
-  sudo ditto "$BUILT_APP" "$INSTALL_DIR/$APP_NAME.app"
-fi
+rm -rf "$ROOT/build/$APP_NAME.app"
+ditto "$BUILT_APP" "$ROOT/build/$APP_NAME.app"
 
-# Register the app and its document types with Launch Services.
-LSREG="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister"
-[ -x "$LSREG" ] && "$LSREG" -f "$INSTALL_DIR/$APP_NAME.app" >/dev/null 2>&1 || true
-
-log "Done: $INSTALL_DIR/$APP_NAME.app"
-if [ "$RUN_AFTER_BUILD" = "1" ]; then
-  open -a "$INSTALL_DIR/$APP_NAME.app"
-fi
+log "Built: build/$APP_NAME.app"
+echo "Architectures: $(lipo -archs "$ROOT/build/$APP_NAME.app/Contents/MacOS/$APP_NAME") / engine: $(lipo -archs "$ROOT/build/$APP_NAME.app/Contents/MacOS/7zz")"

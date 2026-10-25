@@ -18,7 +18,7 @@ settings:
     CODE_SIGN_STYLE: Manual
     CODE_SIGN_IDENTITY: "-"
     DEVELOPMENT_TEAM: ""
-    ENABLE_HARDENED_RUNTIME: "NO"
+    ENABLE_HARDENED_RUNTIME: "YES"
     ENABLE_APP_SANDBOX: "NO"
     SWIFT_STRICT_CONCURRENCY: minimal
     COMBINE_HIDPI_IMAGES: "YES"
@@ -42,6 +42,8 @@ targets:
           - "Resources/**"
           - "Info.plist"
       - path: Sources/Resources
+        buildPhase: resources
+      - path: Resources/PrivacyInfo.xcprivacy
         buildPhase: resources
       - path: Vendor/7zz/7zz
         optional: true
@@ -68,7 +70,7 @@ targets:
         CFBundleIconName: AppIcon
         LSMinimumSystemVersion: "14.0"
         LSApplicationCategoryType: public.app-category.utilities
-        NSHumanReadableCopyright: "Copyright © 2026 Murat Onurcu. MIT License. Includes 7-Zip (7zz) by Igor Pavlov, LGPL."
+        NSHumanReadableCopyright: "Copyright © 2026 Murat Onurcu. MIT License. Includes 7-Zip (7zz) © Igor Pavlov, GNU LGPL."
         NSHighResolutionCapable: true
         NSSupportsAutomaticTermination: false
         NSSupportsSuddenTermination: false

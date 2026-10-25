@@ -71,6 +71,16 @@
         }
       }
     },
+    "About MacPressura": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MacPressura Hakkında"
+          }
+        }
+      }
+    },
     "Add": {
       "localizations": {
         "tr": {
@@ -97,6 +107,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Arşiv"
+          }
+        }
+      }
+    },
+    "Archive engine: 7-Zip (7zz) by Igor Pavlov, GNU LGPL with unRAR restriction.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arşiv motoru: Igor Pavlov'un 7-Zip (7zz) yazılımı, unRAR kısıtlamalı GNU LGPL."
           }
         }
       }
@@ -271,6 +291,16 @@
         }
       }
     },
+    "Contact": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "İletişim"
+          }
+        }
+      }
+    },
     "Content": {
       "localizations": {
         "tr": {
@@ -347,6 +377,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Varsayılan hedef"
+          }
+        }
+      }
+    },
+    "Developer": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geliştirici"
           }
         }
       }
@@ -571,6 +611,16 @@
         }
       }
     },
+    "Free, open-source archive utility for macOS.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS için ücretsiz, açık kaynak arşiv uygulaması."
+          }
+        }
+      }
+    },
     "Hide Tasks": {
       "localizations": {
         "tr": {
@@ -611,8 +661,15 @@
         }
       }
     },
-    "MacPressura": {
-      "shouldTranslate": false
+    "License": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lisans"
+          }
+        }
+      }
     },
     "Maximum": {
       "localizations": {
@@ -750,6 +807,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bir arşiv aç (⌘O)"
+          }
+        }
+      }
+    },
+    "Open source under the MIT License.": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MIT Lisansı ile açık kaynak."
           }
         }
       }
@@ -984,6 +1051,26 @@
         }
       }
     },
+    "Source code": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaynak kod"
+          }
+        }
+      }
+    },
+    "Source code and issues on GitHub": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kaynak kod ve hata bildirimi: GitHub"
+          }
+        }
+      }
+    },
     "Store (no compression)": {
       "localizations": {
         "tr": {
@@ -1074,6 +1161,16 @@
         }
       }
     },
+    "Version": {
+      "localizations": {
+        "tr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sürüm"
+          }
+        }
+      }
+    },
     "Waiting": {
       "localizations": {
         "tr": {
@@ -1123,9 +1220,6 @@
           }
         }
       }
-    },
-    "github.com/murtaza1905/MacPressura": {
-      "shouldTranslate": false
     }
   },
   "version": "1.0"

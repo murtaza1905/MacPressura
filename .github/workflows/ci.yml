@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build (universal, ad-hoc signed)
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Toolchain
+        run: xcodebuild -version
+
+      - name: Build
+        run: |
+          set +e
+          ./scripts/build.sh 2>&1 | tee build.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" != "0" ]; then
+            grep -nE "error:" build.log | head -20 | while IFS= read -r line; do echo "::error::${line}"; done
+            tail -n 15 build.log | while IFS= read -r line; do echo "::error::${line}"; done
+            exit "$status"
+          fi
+
+      - name: Verify bundle
+        run: |
+          app="build/MacPressura.app"
+          lipo -archs "$app/Contents/MacOS/MacPressura" | grep -q "x86_64 arm64"
+          lipo -archs "$app/Contents/MacOS/7zz" | grep -q "x86_64 arm64"
+          "$app/Contents/MacOS/7zz" | head -3 || true
+          /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$app/Contents/Info.plist"
+          /usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$app/Contents/Info.plist"
+          test -f "$app/Contents/Resources/PrivacyInfo.xcprivacy"
+          codesign --verify --deep --strict --verbose=2 "$app"
+
+      - name: Upload app
+        uses: actions/upload-artifact@v4
+        with:
+          name: MacPressura-ci
+          path: build/MacPressura.app

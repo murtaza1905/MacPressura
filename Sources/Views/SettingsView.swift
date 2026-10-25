@@ -52,16 +52,22 @@ struct SettingsView: View {
             }
 
             Section(String(localized: "About")) {
-                LabeledContent(String(localized: "MacPressura"), value: appVersion)
+                LabeledContent(String(localized: "Version"), value: appVersion)
                 LabeledContent(String(localized: "Engine"), value: model.engineBanner.isEmpty ? "7-Zip" : model.engineBanner)
+                LabeledContent(String(localized: "Developer"), value: AboutPanel.author)
+                LabeledContent(String(localized: "Contact")) {
+                    Link(AboutPanel.email, destination: URL(string: "mailto:\(AboutPanel.email)")!)
+                }
+                LabeledContent(String(localized: "Source code")) {
+                    Link("github.com/murtaza1905/MacPressura", destination: AboutPanel.repository)
+                }
+                LabeledContent(String(localized: "License"), value: "MIT")
                 Text("Open source under the MIT license. Bundles 7-Zip (7zz) by Igor Pavlov under the LGPL. Everything runs locally; nothing leaves your Mac.")
                     .font(.caption)
                     .foregroundStyle(.secondary)
-                Link("github.com/murtaza1905/MacPressura", destination: URL(string: "https://github.com/murtaza1905/MacPressura")!)
-                    .font(.caption)
             }
         }
         .formStyle(.grouped)
-        .frame(width: 560, height: 520)
+        .frame(width: 560, height: 640)
     }
 }

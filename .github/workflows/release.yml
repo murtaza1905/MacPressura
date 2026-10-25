@@ -1,0 +1,148 @@
+name: Release
+
+# Pushing a tag such as v0.1.0 builds a universal app, packages it as .dmg and
+# .zip, writes SHA256SUMS.txt and publishes a GitHub Release whose notes come
+# from the matching section of CHANGELOG.md.
+#
+# Builds are ad-hoc signed unless the repository defines these secrets, in which
+# case the app is signed with Developer ID and notarized by Apple:
+#   MACOS_CERTIFICATE_P12        base64-encoded .p12 of a "Developer ID Application" certificate
+#   MACOS_CERTIFICATE_PASSWORD   password of that .p12
+#   APPLE_ID                     Apple ID used for notarization
+#   APPLE_TEAM_ID                10-character team identifier
+#   APPLE_APP_PASSWORD           app-specific password for notarytool
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+env:
+  APP_NAME: MacPressura
+
+jobs:
+  release:
+    name: Build, package and publish
+    runs-on: macos-15
+    env:
+      HAS_SIGNING: ${{ secrets.MACOS_CERTIFICATE_P12 != '' && secrets.APPLE_TEAM_ID != '' }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check that the tag matches MARKETING_VERSION
+        run: |
+          tag="${GITHUB_REF_NAME#v}"
+          version="$(grep -E '^\s*MARKETING_VERSION:' project.yml | head -1 | sed -E 's/.*"([^"]+)".*/\1/')"
+          echo "tag=$tag version=$version"
+          if [ "$tag" != "$version" ]; then
+            echo "::error::Tag v$tag does not match MARKETING_VERSION ($version) in project.yml"
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+
+      - name: Build universal app
+        run: |
+          set +e
+          ./scripts/build.sh 2>&1 | tee build.log
+          status=${PIPESTATUS[0]}
+          if [ "$status" != "0" ]; then
+            grep -nE "error:" build.log | head -20 | while IFS= read -r line; do echo "::error::${line}"; done
+            tail -n 15 build.log | while IFS= read -r line; do echo "::error::${line}"; done
+            exit "$status"
+          fi
+
+      - name: Import Developer ID certificate
+        if: env.HAS_SIGNING == 'true'
+        env:
+          MACOS_CERTIFICATE_P12: ${{ secrets.MACOS_CERTIFICATE_P12 }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+        run: |
+          keychain="$RUNNER_TEMP/signing.keychain-db"
+          keychain_password="$(openssl rand -hex 16)"
+          echo "$MACOS_CERTIFICATE_P12" | base64 --decode > "$RUNNER_TEMP/certificate.p12"
+          security create-keychain -p "$keychain_password" "$keychain"
+          security set-keychain-settings -lut 21600 "$keychain"
+          security unlock-keychain -p "$keychain_password" "$keychain"
+          security import "$RUNNER_TEMP/certificate.p12" -P "$MACOS_CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k "$keychain"
+          security set-key-partition-list -S apple-tool:,apple: -s -k "$keychain_password" "$keychain" >/dev/null
+          security list-keychains -d user -s "$keychain" login.keychain-db
+          rm -f "$RUNNER_TEMP/certificate.p12"
+
+      - name: Sign with Developer ID and notarize the app
+        if: env.HAS_SIGNING == 'true'
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+        run: |
+          app="build/$APP_NAME.app"
+          identity="$(security find-identity -v -p codesigning | grep 'Developer ID Application' | head -1 | sed -E 's/.*"(.*)".*/\1/')"
+          [ -n "$identity" ] || { echo "::error::No 'Developer ID Application' identity in the keychain"; exit 1; }
+          codesign --force --deep --options runtime --timestamp --sign "$identity" "$app"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          ditto -c -k --keepParent "$app" "$RUNNER_TEMP/notarize.zip"
+          xcrun notarytool submit "$RUNNER_TEMP/notarize.zip" --apple-id "$APPLE_ID" --team-id "$APPLE_TEAM_ID" --password "$APPLE_APP_PASSWORD" --wait
+          xcrun stapler staple "$app"
+
+      - name: Package DMG and ZIP
+        run: |
+          brew install create-dmg >/dev/null 2>&1 || echo "create-dmg not installed; using hdiutil fallback"
+          ./scripts/make-dmg.sh --app "build/$APP_NAME.app"
+          ditto -c -k --keepParent "build/$APP_NAME.app" "dist/$APP_NAME-$VERSION.zip"
+          ls -la dist
+
+      - name: Notarize and staple the DMG
+        if: env.HAS_SIGNING == 'true'
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+        run: |
+          dmg="dist/$APP_NAME-$VERSION.dmg"
+          xcrun notarytool submit "$dmg" --apple-id "$APPLE_ID" --team-id "$APPLE_TEAM_ID" --password "$APPLE_APP_PASSWORD" --wait
+          xcrun stapler staple "$dmg"
+
+      - name: Checksums
+        run: |
+          cd dist
+          shasum -a 256 "$APP_NAME-$VERSION.dmg" "$APP_NAME-$VERSION.zip" > SHA256SUMS.txt
+          cat SHA256SUMS.txt
+
+      - name: Release notes
+        run: |
+          {
+            awk -v ver="$VERSION" '
+              /^## \[/ { if (found) exit; if (index($0, "[" ver "]")) { found = 1; next } }
+              found { print }
+            ' CHANGELOG.md
+            echo
+            echo "---"
+            echo
+            echo "**Universal binary** (Apple Silicon + Intel), macOS 14 Sonoma or later."
+            echo
+            if [ "$HAS_SIGNING" = "true" ]; then
+              echo "Signed with Developer ID and notarized by Apple."
+            else
+              echo "This build is ad-hoc signed and not notarized. After dragging $APP_NAME to Applications, open it once with right-click › **Open**, or run:"
+              echo
+              echo '```bash'
+              echo "xattr -dr com.apple.quarantine /Applications/$APP_NAME.app"
+              echo '```'
+            fi
+            echo
+            echo "Verify your download with \`shasum -a 256 -c SHA256SUMS.txt --ignore-missing\`."
+          } > "$RUNNER_TEMP/notes.md"
+          cat "$RUNNER_TEMP/notes.md"
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            "dist/$APP_NAME-$VERSION.dmg" \
+            "dist/$APP_NAME-$VERSION.zip" \
+            dist/SHA256SUMS.txt \
+            --title "$APP_NAME $VERSION" \
+            --notes-file "$RUNNER_TEMP/notes.md"

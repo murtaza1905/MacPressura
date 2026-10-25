@@ -17,6 +17,12 @@ struct MacPressuraApp: App {
         .windowResizability(.contentMinSize)
         .defaultSize(width: 960, height: 620)
         .commands {
+            CommandGroup(replacing: .appInfo) {
+                Button(String(localized: "About MacPressura")) {
+                    AboutPanel.show()
+                }
+            }
+
             CommandGroup(replacing: .newItem) {
                 Button(String(localized: "Open Archive…")) {
                     model.presentOpenPanel()
