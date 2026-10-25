@@ -6,19 +6,40 @@ struct ContentView: View {
     @EnvironmentObject private var model: MainViewModel
     @EnvironmentObject private var queue: JobQueue
 
+    /// Task list is visible and has something to show.
+    private var jobsVisible: Bool {
+        model.showJobs && !queue.jobs.isEmpty
+    }
+
+    /// With no archive open, the task list takes over the window and the drop zone shrinks to a strip.
+    private var compactDropZone: Bool {
+        jobsVisible && model.archive == nil && !model.isLoading
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             if !model.engineAvailable {
                 engineMissingBanner
             }
 
-            mainArea
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
+            if compactDropZone {
+                mainArea
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 132)
+            } else {
+                mainArea
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            }
 
-            if model.showJobs, !queue.jobs.isEmpty {
+            if jobsVisible {
                 Divider()
-                JobsPanel()
-                    .frame(height: 170)
+                if compactDropZone {
+                    JobsPanel()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    JobsPanel()
+                        .frame(height: 200)
+                }
             }
         }
         .background(Color(nsColor: .windowBackgroundColor))
@@ -59,7 +80,7 @@ struct ContentView: View {
         } else if model.archive != nil {
             ArchiveView()
         } else {
-            EmptyStateView()
+            EmptyStateView(compact: compactDropZone)
         }
     }
 
