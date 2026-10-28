@@ -4,6 +4,9 @@ All notable changes to MacPressura are documented here. The format follows [Keep
 
 ## [Unreleased]
 
+### Fixed
+- App icon now follows the standard macOS icon template (824 px body with margins and drop shadow), so macOS 26 displays it directly instead of shrinking it onto a backing plate.
+
 ## [0.1.0] - 2026-10-25
 
 First public build (MVP).
